@@ -1,0 +1,5 @@
+{
+  "name": "review-skills",
+  "description": "Skills for reviewing code changes, with an eval suite.",
+  "version": "0.1.0"
+}
