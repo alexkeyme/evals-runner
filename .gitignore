@@ -1,1 +1,18 @@
+# eval output
 evals/results/
+*.log
+
+# python / uv
+__pycache__/
+*.pyc
+.venv/
+uv.lock
+
+# editors and OS
+.vscode/
+.idea/
+.DS_Store
+
+# secrets
+.env
+.env.*
