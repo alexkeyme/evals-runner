@@ -340,6 +340,9 @@ def main() -> int:
         "cases": results,
     }
     (out_dir / "aggregate-result.json").write_text(json.dumps(report, indent=2))
+    sys.path.insert(0, str(Path(__file__).parent))
+    from report import render  # noqa: E402
+    (out_dir / "report.html").write_text(render(report))
 
     print()
     print(f"{'CASE':<28}{'WITH':>6}{'W/OUT':>7}{'Δ':>7}  RUNS")
@@ -350,6 +353,7 @@ def main() -> int:
         print(f"{c['name']:<28}{a['score']:>6.2f}{wo:>7}{d:>7}  {c['runsPerCase'] * len(arms)}")
     print(f"\n{len(results)} case(s) · mean Δ {report['aggregates']['meanDelta']} · {report['durationSeconds']}s")
     print(f"Results: {out_dir / 'aggregate-result.json'}")
+    print(f"Report: {out_dir / 'report.html'}")
     return 0 if report["aggregates"]["casesPassed"] == len(results) else 1
 
 
